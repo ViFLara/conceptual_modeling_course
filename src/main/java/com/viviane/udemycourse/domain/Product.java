@@ -20,9 +20,7 @@ import lombok.NoArgsConstructor;
 
 @Data
 @Entity
-@Builder
 @NoArgsConstructor
-@AllArgsConstructor
 public class Product implements Serializable {
 	private static final long serialVersionUID = 1L;
 	
@@ -42,4 +40,9 @@ public class Product implements Serializable {
 		inverseJoinColumns = @JoinColumn(name = "category_id"))
 	private List<Category> categories = new ArrayList<>();
 
+	public Product(Integer id, String name, Double price) {
+		this.id = id;
+		this.name = name;
+		this.price = price;
+	}
 }

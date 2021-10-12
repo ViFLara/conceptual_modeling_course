@@ -18,9 +18,7 @@ import lombok.NoArgsConstructor;
 
 @Data
 @Entity
-@Builder
 @NoArgsConstructor
-@AllArgsConstructor
 public class Category implements Serializable {
 	private static final long serialVersionUID = 1L;
 
@@ -33,5 +31,9 @@ public class Category implements Serializable {
 	
 	@ManyToMany(mappedBy = "categories")
 	private List<Product> products = new ArrayList<>();
-	
+
+	public Category(Integer id, String name) {
+		this.id = id;
+		this.name = name;
+	}		
 }
