@@ -11,10 +11,10 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.ManyToMany;
 
-import lombok.AllArgsConstructor;
-import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 
 @Data
 @Entity
@@ -29,6 +29,7 @@ public class Category implements Serializable {
 	@Column
 	private String name;
 	
+	@JsonManagedReference //put on the side (Category) you want to see the associated objects
 	@ManyToMany(mappedBy = "categories")
 	private List<Product> products = new ArrayList<>();
 
