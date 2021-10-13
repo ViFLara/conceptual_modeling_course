@@ -8,9 +8,13 @@ import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
 import com.viviane.udemycourse.domain.Category;
+import com.viviane.udemycourse.domain.City;
 import com.viviane.udemycourse.domain.Product;
+import com.viviane.udemycourse.domain.State;
 import com.viviane.udemycourse.repositories.CategoryRepository;
+import com.viviane.udemycourse.repositories.CityRepository;
 import com.viviane.udemycourse.repositories.ProductRepository;
+import com.viviane.udemycourse.repositories.StateRepository;
 
 @SpringBootApplication
 public class UdemycourseApplication implements CommandLineRunner {
@@ -20,6 +24,12 @@ public class UdemycourseApplication implements CommandLineRunner {
 	
 	@Autowired
 	private ProductRepository productRepository;
+	
+	@Autowired
+	private CityRepository cityRepository;
+	
+	@Autowired
+	private StateRepository stateRepository;
 
 	public static void main(String[] args) {
 		SpringApplication.run(UdemycourseApplication.class, args);
@@ -51,9 +61,23 @@ public class UdemycourseApplication implements CommandLineRunner {
 		p1.getCategories().addAll(Arrays.asList(cat1));
 		p2.getCategories().addAll(Arrays.asList(cat1, cat2));
 		p3.getCategories().addAll(Arrays.asList(cat1));
-
+		
 		categoryRepository.saveAll(Arrays.asList(cat1, cat2));
-		productRepository.saveAll(Arrays.asList(p1, p2, p3));		
+		productRepository.saveAll(Arrays.asList(p1, p2, p3));	
+		
+		State st1 = new State(null, "Minas Gerais");
+		State st2 = new State(null, "Sâo Paulo");
+		
+		City c1 = new City(null, "Uberlândia", st1);
+		City c2 = new City(null, "São Paulo", st2);
+		City c3 = new City(null, "Campinas", st2);
+		
+		st1.getCities().addAll(Arrays.asList(c1));
+		st2.getCities().addAll(Arrays.asList(c2, c3));
+		
+		stateRepository.saveAll(Arrays.asList(st1, st2));
+		
+		cityRepository.saveAll(Arrays.asList(c1, c2, c3));
 
 	}
 }
