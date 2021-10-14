@@ -15,6 +15,7 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.OneToMany;
 
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 import com.viviane.udemycourse.domain.enums.CustumerType;
 
 import lombok.NoArgsConstructor;
@@ -40,6 +41,7 @@ public class Custumer implements Serializable{
 	@Column
 	private Integer type;
 	
+	@JsonManagedReference
 	@OneToMany(mappedBy = "custumer")
 	private List<Address> adresses = new ArrayList<>();
 	

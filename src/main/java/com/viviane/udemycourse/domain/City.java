@@ -10,6 +10,8 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 
+import com.fasterxml.jackson.annotation.JsonManagedReference;
+
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
@@ -26,6 +28,7 @@ public class City implements Serializable{
 	@Column
 	private String name;
 	
+	@JsonManagedReference
 	@ManyToOne
 	@JoinColumn(name = "state_id")
 	private State state;
